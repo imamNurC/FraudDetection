@@ -1,0 +1,200 @@
+# Laporan Proyek Machine Learning - Imam Nurcakra
+
+#### Anime Recomendations Content Based Filtering & Collaborative Filtering 
+
+Sistem rekomendasi anime merupakan teknologi yang penting untuk membantu pengguna menemukan anime yang sesuai dengan preferensi pengguna. Mengingat banyaknya anime yang tersedia saat ini, pengguna sering kali merasa kesulitan untuk menemukan anime yang menarik bagi mereka. Tanpa sistem rekomendasi yang baik, pengguna harus menghabiskan banyak waktu untuk mencari dan mengevaluasi berbagai anime secara manual, yang bisa menjadi proses yang membosankan dan tidak efisien.
+
+
+Masalah dalam rekomendasi anime yaitu Terdapat ribuan anime dengan berbagai genre, tema, dan tipe yang berbeda. Menghadapi volume data yang besar ini membuat pengguna kesulitan menemukan anime yang sesuai dengan preferensinya tanpa bantuan teknologi yang tepat.
+
+Tujuan dalam pembuatan model machine learning pada permasalahan Rekomedasi anime ini yaitu penglaman pengguna yang lebih baik memberikan rekomendasi yang relavan dari judul anime dengan kemiripan genre nya
+
+## Business Understanding
+
+
+ untuk memahami kebutuhan dan preferensi pengguna. Apa yang menjadi preferensi utama pengguna dalam menonton anime yang di cari pengguna? Apakah mereka mencari anime berdasarkan genre tertentu, tema, atau faktor-faktor lain seperti rating atau durasi episode? Klarifikasi masalah mencakup pemahaman mendalam tentang preferensi dan harapan pengguna terhadap sistem rekomendasi.
+
+Seberapa lengkap dan akuratnya data yang tersedia untuk digunakan dalam sistem rekomendasi ini? Apakah data mencakup informasi yang cukup tentang anime, seperti genre, rating, dan informasi lainnya yang relevan? Ketersediaan dan kualitas data akan mempengaruhi kemampuan sistem untuk memberikan rekomendasi yang akurat dan relevan.
+
+**Problem Statements**
+
+- Bagaimana dapat memberikan rekomendasi anime yang sesuai dengan preferensi pengguna secara akurat dan personal?
+- Bagaimana untuk dapat memanfaatkan informasi kolaboratif antar pengguna yang berupaya meningkatkan kualitas rekomendasi anime?
+
+ **Goals :**
+
+ - Mengidentifikasi preferensi dan kecenderungan pengguna terhadap anime.
+- Mengembangkan arsitektur model sistem rekomendasi yang mampu memahami dan memprediksi preferensi pengguna dengan tingkat akurasi yang tinggi dengan kesalahan rata rata error(RMSE) pada Train dan Validasi dibawah 0.5
+
+
+
+**Solution Statement**:
+- Pendekatan Solusi pertama menggunakan Algorithm content based filtering(CBF) cara meraih goals nya dengan tfidf vectorizer dan menghitung tingkat kesamaan dengan cosine similarity. Setelah itu, membuat sejumlah rekomendasi konten anime untuk user berdasarkan kesamaan yang telah dihitung sebelumnya dari interaksi user dengan konten 
+
+- Pendekatan Solusi kedua menggunakan Algorithm Colaborative filtering user based content cara meraih goals nya adalah membuat arsitektur model dense layer pada nilai variable user dan anime dengan target rating
+
+## Data Understanding
+
+Data ini menjelaskan informasi data preferensi pengguna dari 73.516 pengguna pada 12.294 anime. Setiap pengguna(user) dapat menambahkan anime ke daftar lengkapnya dan memberinya peringkat(rating) dan kumpulan data ini adalah kompilasi dari peringkat tersebut
+
+**Statistics Descriptive Anime**
+
+dapat disimpulkan bahwa dataset ini mencakup berbagai anime dengan perbedaan signifikan dalam hal anime_id, rating, dan jumlah anggota. Rating rata-rata menunjukkan bahwa sebagian besar anime memiliki kualitas yang dapat diterima, sementara deviasi standar yang tinggi pada kolom anggota menunjukkan adanya variasi yang besar dalam popularitas anime.
+
+![anime info](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/animDesc.png)
+
+**Statistics Descriptive Rating**
+
+Dari data ini, bahwa terdapat variasi yang luas baik dalam ID pengguna(user_id) maupun ID anime(anime_id). Rating yang diberikan oleh pengguna juga menunjukkan variasi yang signifikan, yang bisa menunjukkan perbedaan preferensi atau kualitas anime yang beragam. 
+
+![anime info](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/userDesc.png)
+
+
+
+**Anime Type Exploratory**
+
+Berikut ini adalah persebaran popularitas anime_id berdasarkan kategori tipenya
+
+![anime info](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/exploratory2.png)
+
+sumber dataset yang digunakan dari kaggle terdiri dari anime.csv dan rating.csv dan untuk lebih detailnya data tersebut diambil dari API myanimelist sebagai berikut
+- [Kaggle Anime Recommender system](https://www.kaggle.com/datasets/CooperUnion/anime-recommendations-database/data)
+- [anime list API](https://myanimelist.net/)
+
+
+Variabel-variabel pada Anime Recomendations Kaggle dataset memiliki fitur yang terdiri sebagai berikut:
+
+**Anime.csv**
+1. anime_id - id unik dari anime. dari myanime
+2. name - nama/judul lengkap anime.
+3. genre - kumpulan koma nilai genre.
+4. type - movie, TV, OVA, dll.
+5. episodes - banyaknya tayangan yang sudah di putar (1 jika movie).
+6. rating - rata rata rating untuk 1 anime.
+7. members - number of community members that are in this anime's "group".
+
+**Rating.csv**
+1. user_id - id pengguna yang dihasilkan secara acak yang berarti user yang telah memberi rating ke anime
+2. anime_id - anime yang sudah di rating oleh user
+3. rating - peringkat dari 1 sampai 10 yang ditetapkan user ini (-1 jika pengguna menontonnya tetapi tidak memberikan rating).
+
+
+
+## Data Preparation
+Berikut ini adalah beberapa teknik yang di lakukan pada tahapan data preparation
+**1. Pengumpulan Data:**
+- Mengumpulkan data dari sumber-sumber seperti API (contohnya MyAnimeList API), atau dataset yang sudah tersedia di platform seperti Kaggle.
+- Data yang dikumpulkan termasuk informasi tentang anime (judul, genre, sinopsis, dll) dan data interaksi pengguna (rating, ulasan, dll).
+
+dalam mengumpulkan fitur fitur target yang layak untuk di jadikan sistem rekomendasi, fitur yang paling berpotensi yaitu
+Informasi tentang anime(anime_id) dan tentang interaksi pengguna dengan anime itu sendiri (user_id)
+
+**2. Pembersihan Data :**
+- Menghapus duplikasi dari data rating.csv pada kolom 'user_id' dan 'anime_id'
+- Mengatasi missing values (nilai yang hilang) dengan mengisi nilai -1 menjadi 0 pada kolom rating di tabel rating_df
+- menggabungkan data yang sudah dihapus duplikat dan -1 diganti 0 dengan data anime.csv, data di gabung pada kolom 'anime_id' 
+
+pada proses tahapan tersebut untuk memastikan konsistensi dan format data yang seragam sehingga Data yang bersih dan konsisten memastikan bahwa model layak dan tidak terpengaruh oleh noise atau informasi yang salah, yang bisa mengurangi performa rekomendasi.
+**Tujuan** :
+
+
+**3. CF Data preparation :**
+Prosesnya ada bebrapa tambahan setelah dilakukan pembersihan data 
+- **penghapusan missing value**
+pada data preparation CBF menggunakan data yang missing value nya sudah tidak ada, ketika data anime dengan data rating yang sudah di gabungkan 
+**Tujuan** : membantu dalam meningkatkan kualitas dataset. Hal ini memungkinkan model untuk belajar dari data yang lebih konsisten dan dapat diandalkan
+
+- **proses Encoding**
+jenis encoding yang di gunakan yakni integer encoding, mengonversi data kategorikal, dalam hal ini user_id dan anime_id, menjadi representasi numerik yang unik
+**Tujuan** : memungkinkan model untuk menangani data kategorikal dan membantu dalam mengurangi dimensi data. Ini juga memfasilitasi operasi seperti perhitungan jarak atau kesamaan antar pengguna atau item dalam sistem rekomendasi.
+
+
+- **Train-Test Split Data**
+memilih subset jumlah data interaksi user dari dataset dengan pembagian 80% untuk pelatihan dan 20% untuk validasi 
+**Tujuan** : Train-test split adalah teknik penting untuk menghindari overfitting, di mana model terlalu spesifik pada data pelatihan dan gagal untuk memprediksi dengan baik pada data baru. Dengan membagi data, dapat dipastikan bahwa model memiliki generalisasi yang baik dan dapat memberikan rekomendasi yang akurat pada pengguna atau item yang belum pernah dilihat sebelumnya.
+
+## Modeling
+
+**Content-Based Filtering (CBF)**
+ Teknik: TfidfVectorizer, Cosine Similarity
+ CBF menggunakan informasi detail dari item (anime) seperti sinopsis, genre, dan atribut lainnya untuk menemukan kemiripan antar item. Teknik ini mengubah teks deskripsi menjadi vektor numerik menggunakan TfidfVectorizer. Kemudian, kesamaan antara vektor-vektor ini dihitung menggunakan Cosine Similarity. dalam konteks Anime Rekomendasi diberikan berdasarkan item yang paling mirip dengan item yang sudah di interaksikan oleh pengguna dengan kemiripan genre.
+
+**Kelebihan:**
+- Personalisasi Tinggi 
+- Tidak Memerlukan Data Pengguna Lain
+
+**Kekurangan :**
+- Keterbatasan dalam Menangkap Minat yang Kompleks
+- Kesulitan dalam Menangani Preferensi Dinamis
+
+
+Berikut ini adalah output Top-N dari similiarity anime berdasarkan genre,  dengan panggilan fungsi     
+1.      anime_recomendations('Shingeki no Kyojin')
+
+ ![CBF](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/Top-N.png).
+
+**Collaborative Filtering (CF)**
+Teknik: User-Based Collaborative Filtering
+user berbasis pengguna membuat rekomendasi berdasarkan kesamaan preferensi antar pengguna. Algoritma menghitung kesamaan antar pengguna berdasarkan rating yang mereka berikan pada item yang sama. Rekomendasi diberikan dengan mencari pengguna yang paling mirip dan merekomendasikan item yang disukai oleh pengguna mirip tersebut.
+
+proses pemodelan Collaborative Filtering dilakukan dengan membangun arsitektur model untuk menganalisis pola interaksi pengguna dengan anime. yakni user dengan banyaknya anime secara kompleks di latih ke dalam neural network embedding layers yang berarti suatu komponen dalam model deep learning yang digunakan untuk merepresentasikan data kategorikal atau diskrit sebagai vektor kontinu
+
+#### Model Architecture
+
+| Layer (type)               | Output Shape    | Param #   | Connected to         |
+|----------------------------|-----------------|-----------|----------------------|
+| user (InputLayer)          | (None, 1)       | 0         | -                    |
+| anime (InputLayer)         | (None, 1)       | 0         | -                    |
+| user_embedding (Embedding) | (None, 1, 128)  | 69,760    | user[0][0]           |
+| anime_embedding (Embedding)| (None, 1, 128)  | 69,760    | anime[0][0]          |
+| dot_product (Dot)          | (None, 1, 1)    | 0         | user_embedding[0][0], anime_embedding[0][0] |
+| flatten_2 (Flatten)        | (None, 1)       | 0         | dot_product[0][0]    |
+| dense_2 (Dense)            | (None, 1)       | 2         | flatten_2[0][0]      |
+| batch_normalization_2 (BatchNormalization) | (None, 1) | 4 | dense_2[0][0]        |
+| activation_2 (Activation)  | (None, 1)       | 0         | batch_normalization_2[0][0] |
+
+##### Deskripsi Layers :
+
+1. **user (InputLayer)**: Lapisan input untuk ID pengguna.
+2. **anime (InputLayer)**: Lapisan input untuk ID anime.
+3. **user_embedding (Embedding)**: Lapisan embedding yang mengubah ID pengguna menjadi vektor padat dengan ukuran tetap (128).
+4. **anime_embedding (Embedding)**: Lapisan embedding yang mengubah ID anime menjadi vektor padat dengan ukuran tetap (128).
+5. **dot_product (Dot)**: Menghitung dot product dari embedding pengguna dan anime untuk mengukur kesamaan.
+6. **flatten_2 (Flatten)**: Mengubah output dari dot product menjadi bentuk yang kompatibel dengan lapisan dense.
+7. **dense_2 (Dense)**: Lapisan fully connected yang memproses hasil dari flatten dot product.
+8. **batch_normalization_2 (BatchNormalization)**: Menormalkan output dari lapisan dense.
+9. **activation_2 (Activation)**: Lapisan aktivasi yang menerapkan fungsi aktivasi pada output yang sudah dinormalisasi.
+
+
+Dalam Project ini Collaborative filtering berbasis user menampilkan 5 Top-N dari user_id nomer 7
+
+ ![CF](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/Top-N%20CF.png).
+ 
+
+
+## Evaluation
+Metrik Evaluasi yang digunakan yaitu RMSE(Root Mean Squared Error) adalah metrik yang digunakan untuk mengukur kesalahan model dalam memprediksi data kuantitatif, atau bisa juga di sebut rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual
+
+
+
+ ![Univariate](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/eval.png)
+
+berdasarkan metrik tersebut yakni :
+- **RMSE pada Data Latih (Biru):** Garis biru menunjukkan penurunan nilai RMSE seiring dengan bertambahnya epoch. Ini mengindikasikan bahwa model semakin baik dalam memprediksi data latih seiring waktu.
+- **RMSE pada Data Uji (Oranye):** Garis oranye menunjukkan fluktuasi nilai RMSE dan tidak menunjukkan tren penurunan yang konsisten, yang bisa mengindikasikan bahwa model mungkin overfitting terhadap data latih.
+
+pada metrik tersebut tampak :
+1. **overfitting** : garis data uji tidak menunjukkan penurunan yang konsisten. bisa jadi tanda bahwa model terlalu menyesuaikan diri dengan data latih dan tidak menggeneralisasi dengan baik pada data uji.
+
+2. **Epoch perlu optimal:** mungkin perlu menemukan titik di mana RMSE untuk data uji adalah terendah sebagai epoch optimal sebelum model mulai overfitting
+
+
+
+Dalam konteks data anime rekomendasi dengan metode CBF(Content Based Filtering) menyediakan rekomendasi yang relevan dan menarik. dengan preferensi dan kecenderungan yang berdasarkan keterlibatan pengguna/user dengan konten(anime) nya. yang menggunakan teknik pendekatan  TfidfVectorizer dan Cosine Similarity yang mampu merekomendasikan user dari nama anime dengan genre genre kemiripan yang sejenis
+
+
+tetapi pembuatan model user based colaborative filtering belum mampu memahami dan memprediksi preferensi pengguna dengan tingkat akurasi yang tinggi alias belum mampu mengidentifikasi pola dan kesamaan preferensi antara pengguna berdasarkan riwayat penilaian(rating) atau penontonan mereka. yang di tunjukkan pada evaluasi metrik diatas tetapi pendekatan nya sudah mengarah pada goals dalam project ini
+
+
+
+

@@ -1,0 +1,37 @@
+1.bisinis understanding 
+ - solution statement, lebih jelas detailnya dan tujuan yang terukur     [done]
+
+
+2. Data understanding
+ - tambah informasi data yang digunakan
+ - memberikan urain, analisis untuk seluruh variable dalam data, dan  [ done ]
+ - info penting yang bisa diambil dalam visualisasi data tersebut [done]
+ - gaperlu menuliskan kode  [done]
+ - saran penulisan(opsional)  
+ - memplot tabel jangan gambar, tapi dengan markdown  [done]
+
+
+3. Data prep
+ - menuliskan/menjelaskan penanganan missing value(data duplikat dan oulier)  [done]
+ - memisahkan penjelasan minmaxScaler, encoding, standarscaler, train-tes split data  [done]
+
+
+4. Modeling 
+ - hapus kalimat "Rubrik/Kriteria Tambahan (Opsional):"   [done]
+ - Jelaskan kenapa dari 4 algoritma/model yang digunakan yang dipilih dapat menyelesaikan masalah, dan [done]
+ - jelaskan lebih cocok yang dipilih itu daripada lainnya [done]
+ - jelaskan tahapan untuk parameternya yang digunakan dalam pemodelan
+
+
+5. Evaluation
+ - saran penulisan(opsional)  
+ - menghapus kalimat di results model     [done]
+ - tampilkan komparasi MSE dan R-squared dalam bentuk tabel markdown [ done ]
+ - jelaskan apakah project ini berhasil/tidak? [done]
+ - apakah evaluasi mampu mencapai goals yang diinginkan? [done]
+ - apakah sudah mampu menyelesaikan problem yang diangkat [done]
+
+
+
+
+

@@ -1,0 +1,46 @@
+Data Understanding :
+
+     Informasi data, [done]
+
+     Variable anime dan rating [done]
+
+
+     Tahapan untuk mengerti data dengan cara 
+	univariate [opsional]
+	eksplore type anime,
+	Statistics descriptive anime and rating data
+     
+     Teknik untuk melakukan cara mengerti data
+
+
+Data Preparation :
+
+     Jelaskan deskripsi Tekniknya, sesuai yang ada di notebook
+     Proses
+     Mengapa proses tersebut perlu
+        
+
+
+Modeling :
+
+     Jelaskan deskripsi model untuk menyelesaikan masalah
+	Content Based Filtering : TfidVectorizer, cosine similiarity
+	Collaborative filtering : user Based recom,
+
+     Tampilkan Top-N recommendations
+     
+     Kelebihan dan kekurangan Teknik yang dipilih
+
+
+Evaluation :
+
+     Metrik Evaluasi yang digunakan 
+     hasil projectnya
+
+
+
+
+
+
+
+
