@@ -102,22 +102,32 @@ pada proses tahapan tersebut untuk memastikan konsistensi dan format data yang s
 Prosesnya ada bebrapa tambahan setelah dilakukan pembersihan data 
 - **penghapusan missing value**
 pada data preparation CBF menggunakan data yang missing value nya sudah tidak ada, ketika data anime dengan data rating yang sudah di gabungkan 
-**Tujuan** : membantu dalam meningkatkan kualitas dataset. Hal ini memungkinkan model untuk belajar dari data yang lebih konsisten dan dapat diandalkan
+
+    **Tujuan** : membantu dalam meningkatkan kualitas dataset. Hal ini memungkinkan model untuk belajar dari data yang lebih konsisten dan dapat diandalkan
 
 - **proses Encoding**
-jenis encoding yang di gunakan yakni integer encoding, mengonversi data kategorikal, dalam hal ini user_id dan anime_id, menjadi representasi numerik yang unik
-**Tujuan** : memungkinkan model untuk menangani data kategorikal dan membantu dalam mengurangi dimensi data. Ini juga memfasilitasi operasi seperti perhitungan jarak atau kesamaan antar pengguna atau item dalam sistem rekomendasi.
+jenis encoding yang di gunakan yakni integer encoding, mengonversi data kategorikal, dalam hal ini user_id dan anime_id, menjadi representasi numerik yang unik       
+    
+     **Tujuan** : memungkinkan model untuk menangani data kategorikal dan membantu dalam mengurangi dimensi data. Ini juga memfasilitasi operasi seperti perhitungan jarak atau kesamaan antar pengguna atau item dalam sistem rekomendasi.
 
 
 - **Train-Test Split Data**
 memilih subset jumlah data interaksi user dari dataset dengan pembagian 80% untuk pelatihan dan 20% untuk validasi 
-**Tujuan** : Train-test split adalah teknik penting untuk menghindari overfitting, di mana model terlalu spesifik pada data pelatihan dan gagal untuk memprediksi dengan baik pada data baru. Dengan membagi data, dapat dipastikan bahwa model memiliki generalisasi yang baik dan dapat memberikan rekomendasi yang akurat pada pengguna atau item yang belum pernah dilihat sebelumnya.
+
+     **Tujuan** : Train-test split adalah teknik penting untuk menghindari overfitting, di mana model terlalu spesifik pada data pelatihan dan gagal untuk memprediksi dengan baik pada data baru. Dengan membagi data, dapat dipastikan bahwa model memiliki generalisasi yang baik dan dapat memberikan rekomendasi yang akurat pada pengguna atau item yang belum pernah dilihat sebelumnya.
 
 ## Modeling
 
 **Content-Based Filtering (CBF)**
- Teknik: TfidfVectorizer, Cosine Similarity
- CBF menggunakan informasi detail dari item (anime) seperti sinopsis, genre, dan atribut lainnya untuk menemukan kemiripan antar item. Teknik ini mengubah teks deskripsi menjadi vektor numerik menggunakan TfidfVectorizer. Kemudian, kesamaan antara vektor-vektor ini dihitung menggunakan Cosine Similarity. dalam konteks Anime Rekomendasi diberikan berdasarkan item yang paling mirip dengan item yang sudah di interaksikan oleh pengguna dengan kemiripan genre.
+
+###### **Teknik yang digunakan:**
+TF-IDF Vectorizer: Teknik ini digunakan untuk merepresentasikan fitur-fitur dari anime dalam bentuk vektor. TF-IDF (Term Frequency-Inverse Document Frequency) menghitung bobot pentingnya setiap kata dalam deskripsi atau genre anime relatif terhadap seluruh data.
+
+Cosine Similarity: Metode ini digunakan untuk menghitung kesamaan antara anime berdasarkan vektor yang dihasilkan oleh TF-IDF. Cosine similarity mengukur sudut antara dua vektor, yang memberi indikasi seberapa mirip dua anime tersebut.
+
+
+
+Teknik ini dipilih karena TF-IDF dan cosine similarity sangat efektif dalam menangani data tekstual seperti genre dan deskripsi anime. dan juga Metode ini relatif mudah diimplementasikan dan cepat dalam proses komputasi, cocok untuk dataset yang besar.
 
 **Kelebihan:**
 - Personalisasi Tinggi 
@@ -128,16 +138,39 @@ memilih subset jumlah data interaksi user dari dataset dengan pembagian 80% untu
 - Kesulitan dalam Menangani Preferensi Dinamis
 
 
-Berikut ini adalah output Top-N dari similiarity anime berdasarkan genre,  dengan panggilan fungsi     
-1.      anime_recomendations('Shingeki no Kyojin')
+Berikut ini adalah output Top-N dari similiarity anime berdasarkan genre,  
 
- ![CBF](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/Top-N.png).
+1. Pertama cek dahulu apa agenre dari anime 'Shingeki no Kyojin'
+
+    | id  | judul_anime     | genre                                      |
+    |-----|-----------------|--------------------------------------------|
+    |16498|Shingeki no Kyojin | Action, Drama, Fantasy, Shounen, Super Power
+
+2. panggil Fungsi anime_recommendations yang akan di tes untuk menampilkan Top-N Similiarity based genre
+
+1.        anime_recomendations('Shingeki no Kyojin')
+
+
+    | No | Judul Anime                                   | Genre |
+    |----|-----------------------------------------------|-------|
+    | 0  | Final Fantasy VII: Advent Children            | Action, Fantasy, Super Power |
+    | 1  | One Piece Movie 1                             | Action, Adventure, Comedy, Fantasy, Shounen, Super Power |
+    | 2  | Katekyo Hitman Reborn!                        | Action, Comedy, Shounen, Super Power |
+    | 3  | Hunter x Hunter (2011)                        | Action, Adventure, Shounen, Super Power |
+    | 4  | Hunter x Hunter: Greed Island                 | Action, Adventure, Shounen, Super Power |
+    | 5  | Hunter x Hunter                               | Action, Adventure, Shounen, Super Power |
+    | 6  | Naruto: Takigakure no Shitou - Ore ga Eiyuu Da... | Action, Adventure, Comedy, Shounen, Super Power |
+    | 7  | Bleach                                        | Action, Comedy, Shounen, Super Power, Supernatural |
+    | 8  | Boku no Hero Academia                         | Action, Comedy, School, Shounen, Super Power |
+    | 9  | GetBackers                                    | Action, Comedy, Drama, Mystery, Shounen, Superpower |
+
+
 
 **Collaborative Filtering (CF)**
 Teknik: User-Based Collaborative Filtering
-user berbasis pengguna membuat rekomendasi berdasarkan kesamaan preferensi antar pengguna. Algoritma menghitung kesamaan antar pengguna berdasarkan rating yang mereka berikan pada item yang sama. Rekomendasi diberikan dengan mencari pengguna yang paling mirip dan merekomendasikan item yang disukai oleh pengguna mirip tersebut.
+User-Item Matrix: Membangun matriks pengguna-item di mana setiap entri merepresentasikan penilaian yang diberikan oleh pengguna terhadap anime.
 
-proses pemodelan Collaborative Filtering dilakukan dengan membangun arsitektur model untuk menganalisis pola interaksi pengguna dengan anime. yakni user dengan banyaknya anime secara kompleks di latih ke dalam neural network embedding layers yang berarti suatu komponen dalam model deep learning yang digunakan untuk merepresentasikan data kategorikal atau diskrit sebagai vektor kontinu
+Matrix Factorization (MF): Teknik ini, seperti Singular Value Decomposition (SVD) atau Alternating Least Squares (ALS), digunakan untuk mengurai matriks pengguna-item menjadi dua matriks dengan dimensi lebih rendah.
 
 #### Model Architecture
 
@@ -166,10 +199,16 @@ proses pemodelan Collaborative Filtering dilakukan dengan membangun arsitektur m
 9. **activation_2 (Activation)**: Lapisan aktivasi yang menerapkan fungsi aktivasi pada output yang sudah dinormalisasi.
 
 
-Dalam Project ini Collaborative filtering berbasis user menampilkan 5 Top-N dari user_id nomer 7
+Dalam Project ini Collaborative filtering menampilkan beberapa film yang mendapatkan rating tinggi dari user_id nomor 7 sehingga didapatkan top-N recommendation :
 
- ![CF](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/Top-N%20CF.png).
- 
+| No. | Judul Anime       | rating |
+|-----|-------------------|--------|
+| 1   | Oni Chichi        | 7.47
+| 2   | Kuroko no Basket  |  8.46
+| 3   | Bleach            | 7.95
+| 4   | Dragon Ball       | 8.16
+| 5   | Green Green       | 6.44
+
 
 
 ## Evaluation
@@ -177,7 +216,7 @@ Metrik Evaluasi yang digunakan yaitu RMSE(Root Mean Squared Error) adalah metrik
 
 
 
- ![Univariate](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/eval.png)
+ ![Univariate](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/metrics.png)
 
 berdasarkan metrik tersebut yakni :
 - **RMSE pada Data Latih (Biru):** Garis biru menunjukkan penurunan nilai RMSE seiring dengan bertambahnya epoch. Ini mengindikasikan bahwa model semakin baik dalam memprediksi data latih seiring waktu.
