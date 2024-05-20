@@ -167,10 +167,15 @@ Berikut ini adalah output Top-N dari similiarity anime berdasarkan genre,
 
 
 **Collaborative Filtering (CF)**
-Teknik: User-Based Collaborative Filtering
-User-Item Matrix: Membangun matriks pengguna-item di mana setiap entri merepresentasikan penilaian yang diberikan oleh pengguna terhadap anime.
+ 
+ 
+**1.  User-Item Matrix**
+Membangun matriks pengguna-item di mana setiap entri merepresentasikan penilaian yang diberikan oleh pengguna terhadap anime. Matriks ini akan menjadi dasar untuk menghitung kesamaan antar pengguna atau antar item.
 
-Matrix Factorization (MF): Teknik ini, seperti Singular Value Decomposition (SVD) atau Alternating Least Squares (ALS), digunakan untuk mengurai matriks pengguna-item menjadi dua matriks dengan dimensi lebih rendah.
+**2. Matrix Factorization (MF)**
+Menggunakan teknik matrix factorization seperti Singular Value Decomposition (SVD) atau Alternating Least Squares (ALS) untuk mengurai matriks pengguna-item menjadi dua matriks dengan dimensi lebih rendah. Tujuannya adalah untuk menemukan faktor laten yang merepresentasikan pengguna dan anime:
+
+
 
 #### Model Architecture
 
@@ -214,25 +219,18 @@ Dalam Project ini Collaborative filtering menampilkan beberapa film yang mendapa
 ## Evaluation
 Metrik Evaluasi yang digunakan yaitu RMSE(Root Mean Squared Error) adalah metrik yang digunakan untuk mengukur kesalahan model dalam memprediksi data kuantitatif, atau bisa juga di sebut rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual
 
-
-
  ![Univariate](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/metrics.png)
 
 berdasarkan metrik tersebut yakni :
-- **RMSE pada Data Latih (Biru):** Garis biru menunjukkan penurunan nilai RMSE seiring dengan bertambahnya epoch. Ini mengindikasikan bahwa model semakin baik dalam memprediksi data latih seiring waktu.
+- **RMSE pada Data Latih (Biru):** Pada data latihan, nilai Root Mean Squared Error (RMSE) menurun tajam pada awalnya dan kemudian terus menurun dengan laju yang lebih lambat, menunjukkan bahwa model sedang belajar dan meningkatkan performanya seiring dengan bertambahnya epoch.
+
 - **RMSE pada Data Uji (Oranye):** Garis oranye menunjukkan fluktuasi nilai RMSE dan tidak menunjukkan tren penurunan yang konsisten, yang bisa mengindikasikan bahwa model mungkin overfitting terhadap data latih.
 
 pada metrik tersebut tampak :
 1. **overfitting** : garis data uji tidak menunjukkan penurunan yang konsisten. bisa jadi tanda bahwa model terlalu menyesuaikan diri dengan data latih dan tidak menggeneralisasi dengan baik pada data uji.
 
-2. **Epoch perlu optimal:** mungkin perlu menemukan titik di mana RMSE untuk data uji adalah terendah sebagai epoch optimal sebelum model mulai overfitting
+2. **Epoch perlu optimal:** menunjukkan bahwa model mungkin tidak menggeneralisasi dengan baik ke data yang tidak terlihat atau telah mencapai performa optimalnya.
 
-
-
-Dalam konteks data anime rekomendasi dengan metode CBF(Content Based Filtering) menyediakan rekomendasi yang relevan dan menarik. dengan preferensi dan kecenderungan yang berdasarkan keterlibatan pengguna/user dengan konten(anime) nya. yang menggunakan teknik pendekatan  TfidfVectorizer dan Cosine Similarity yang mampu merekomendasikan user dari nama anime dengan genre genre kemiripan yang sejenis
-
-
-tetapi pembuatan model user based colaborative filtering belum mampu memahami dan memprediksi preferensi pengguna dengan tingkat akurasi yang tinggi alias belum mampu mengidentifikasi pola dan kesamaan preferensi antara pengguna berdasarkan riwayat penilaian(rating) atau penontonan mereka. yang di tunjukkan pada evaluasi metrik diatas tetapi pendekatan nya sudah mengarah pada goals dalam project ini
 
 
 
