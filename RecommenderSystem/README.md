@@ -41,13 +41,34 @@ Data ini menjelaskan informasi data preferensi pengguna dari 73.516 pengguna pad
 
 dapat disimpulkan bahwa dataset ini mencakup berbagai anime dengan perbedaan signifikan dalam hal anime_id, rating, dan jumlah anggota. Rating rata-rata menunjukkan bahwa sebagian besar anime memiliki kualitas yang dapat diterima, sementara deviasi standar yang tinggi pada kolom anggota menunjukkan adanya variasi yang besar dalam popularitas anime.
 
-![anime info](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/animDesc.png)
+
+|       | anime_id   | rating   | members     |
+|-------|------------|----------|-------------|
+| count | 12294.0000 | 12064.00 | 1.2294e+04  |
+| mean  | 14058.2216 | 6.4739   | 1.80713e+04 |
+| std   | 11455.2947 | 1.0267   | 5.48206e+04 |
+| min   | 1.0000          | 1.6700     | 5.000000           |
+| 25%   | 3484.2500       | 5.8800     | 2.250000         |
+| 50%   | 10260.5000      | 6.5700     | 1.550000        |
+| 75%   | 24794.5000      | 7.0000     | 9.437000        |
+| max   | 342527.000        | 10.0000      | 1.013917         |
+
 
 **Statistics Descriptive Rating**
 
 Dari data ini, bahwa terdapat variasi yang luas baik dalam ID pengguna(user_id) maupun ID anime(anime_id). Rating yang diberikan oleh pengguna juga menunjukkan variasi yang signifikan, yang bisa menunjukkan perbedaan preferensi atau kualitas anime yang beragam. 
 
-![anime info](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/userDesc.png)
+
+|       | user_id     | anime_id    | rating      |
+|-------|-------------|-------------|-------------|
+| count | 7.813737e+06| 7.813737e+06| 7.813737e+06|
+| mean  | 3.672796e+04| 8.909072e+03| 6.144300e+00|
+| std   | 2.099759e+04| 8.883950e+03| 3.727800e+00|
+| min   | 1.000000e+00| 1.000000e+00| -1.000000e+00|
+| 25%   | 1.897400e+04| 1.240000e+03| 6.000000e+00|
+| 50%   | 3.679100e+04| 6.213000e+03| 7.000000e+00|
+| 75%   | 5.475500e+04| 4.093900e+04| 9.900000e+00|
+| max   | 7.351600e+04| 3.451900e+04| 1.000010e+02|
 
 
 
