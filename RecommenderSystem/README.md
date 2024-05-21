@@ -229,7 +229,7 @@ Dalam Project ini Collaborative filtering menampilkan beberapa film yang mendapa
 
 | No. | Judul Anime       | rating |
 |-----|-------------------|--------|
-| 1   | Oni Chichi        | 7.47
+| 1   | Oni Chichi        | 7.47 
 | 2   | Kuroko no Basket  |  8.46
 | 3   | Bleach            | 7.95
 | 4   | Dragon Ball       | 8.16
@@ -243,15 +243,23 @@ Metrik Evaluasi yang digunakan yaitu RMSE(Root Mean Squared Error) adalah metrik
  ![Univariate](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/metrics.png)
 
 berdasarkan metrik tersebut yakni :
-- **RMSE pada Data Latih (Biru):** Pada data latihan, nilai Root Mean Squared Error (RMSE) menurun tajam pada awalnya dan kemudian terus menurun dengan laju yang lebih lambat, menunjukkan bahwa model sedang belajar dan meningkatkan performanya seiring dengan bertambahnya epoch.
+- **RMSE pada Data Latih (Biru):** Pada data latihan, nilai Root Mean Squared Error (RMSE) menurun tajam pada awalnya dan kemudian terus menurun dengan laju yang lebih lambat, menunjukkan peningkatan performa selama proses pelatihan, yang ditandai dengan penurunan nilai RMSE pada data latihan.
 
-- **RMSE pada Data Uji (Oranye):** Garis oranye menunjukkan fluktuasi nilai RMSE dan tidak menunjukkan tren penurunan yang konsisten, yang bisa mengindikasikan bahwa model mungkin overfitting terhadap data latih.
+- **RMSE pada Data Uji (Oranye):**  Tetap relatif stabil sepanjang epoch, menunjukkan tingkat kesalahan yang konsisten dalam prediksi data uji. yang bisa mengindikasikan bahwa model mungkin overfitting terhadap data latih.
 
-pada metrik tersebut tampak :
-1. **overfitting** : garis data uji tidak menunjukkan penurunan yang konsisten. bisa jadi tanda bahwa model terlalu menyesuaikan diri dengan data latih dan tidak menggeneralisasi dengan baik pada data uji.
 
-2. **Epoch perlu optimal:** menunjukkan bahwa model mungkin tidak menggeneralisasi dengan baik ke data yang tidak terlihat atau telah mencapai performa optimalnya.
+**Hasil :**
+pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil
 
+namun untuk metode Collaborative filtering 
+dalam project ini dinyatakan gagal karena pada metrik tersebut  **overfitting** yakni  garis data uji tidak menunjukkan penurunan yang konsisten. bisa jadi tanda bahwa model terlalu menyesuaikan diri dengan data latih dan tidak menggeneralisasi dengan baik pada data uji.
+
+tapi ada beberapa kemungkinan metode yang harus di perbaiki dari evaluasi ini 
+1. Pemilihan fitur/ Feature engineering yang digunakan untuk mempertimbangkan seberapa besar dataset pengaruh terhadap RMSE 
+
+2. menambahkan regularisasi, dropout atau juga early stopping untuk mengontrol overfitting
+
+3. Optimasi Hyperparameter seperti learning rate, jumlah epoch, atau batch size dapat membantu meningkatkan performa model.
 
 
 
