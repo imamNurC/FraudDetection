@@ -53,6 +53,7 @@ dapat disimpulkan bahwa dataset ini mencakup berbagai anime dengan perbedaan sig
 | 75%   | 24794.5000      | 7.0000     | 9.437000        |
 | max   | 342527.000        | 10.0000      | 1.013917         |
 
+<sub>tabel 1. Statistics descriptive pada data anime</sub>
 
 **Statistics Descriptive Rating**
 
@@ -70,6 +71,7 @@ Dari data ini, bahwa terdapat variasi yang luas baik dalam ID pengguna(user_id) 
 | 75%   | 5.475500e+04| 4.093900e+04| 9.900000e+00|
 | max   | 7.351600e+04| 3.451900e+04| 1.000010e+02|
 
+<sub>tabel 2. Statistics descriptive pada data rating</sub>
 
 
 **Anime Type Exploratory**
@@ -77,6 +79,8 @@ Dari data ini, bahwa terdapat variasi yang luas baik dalam ID pengguna(user_id) 
 Berikut ini adalah persebaran popularitas anime_id berdasarkan kategori tipenya
 
 ![anime info](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/exploratory2.png)
+
+<sub>gambar 1. Univariate analysis anime type</sub>
 
 sumber dataset yang digunakan dari kaggle terdiri dari anime.csv dan rating.csv dan untuk lebih detailnya data tersebut diambil dari API myanimelist sebagai berikut
 - [Kaggle Anime Recommender system](https://www.kaggle.com/datasets/CooperUnion/anime-recommendations-database/data)
@@ -167,6 +171,8 @@ Berikut ini adalah output Top-N dari similiarity anime berdasarkan genre,
     |-----|-----------------|--------------------------------------------|
     |16498|Shingeki no Kyojin | Action, Drama, Fantasy, Shounen, Super Power
 
+
+
 2. panggil Fungsi anime_recommendations yang akan di tes untuk menampilkan Top-N Similiarity based genre
 
 1.        anime_recomendations('Shingeki no Kyojin')
@@ -185,7 +191,7 @@ Berikut ini adalah output Top-N dari similiarity anime berdasarkan genre,
     | 8  | Boku no Hero Academia                         | Action, Comedy, School, Shounen, Super Power |
     | 9  | GetBackers                                    | Action, Comedy, Drama, Mystery, Shounen, Superpower |
 
-
+    <sub>tabel 3.1. Top-N Content Based filtering dari kemiripan genre anime yang berjudul shingeki no kyojin</sub>
 
 **Collaborative Filtering (CF)**
  
@@ -212,6 +218,8 @@ Menggunakan teknik matrix factorization seperti Singular Value Decomposition (SV
 | batch_normalization_2 (BatchNormalization) | (None, 1) | 4 | dense_2[0][0]        |
 | activation_2 (Activation)  | (None, 1)       | 0         | batch_normalization_2[0][0] |
 
+<sub>tabel 4. Arsitektur model</sub>
+
 ##### Deskripsi Layers :
 
 1. **user (InputLayer)**: Lapisan input untuk ID pengguna.
@@ -235,12 +243,14 @@ Dalam Project ini Collaborative filtering menampilkan beberapa film yang mendapa
 | 4   | Dragon Ball       | 8.16
 | 5   | Green Green       | 6.44
 
-
+<sub>tabel 5. Top-N collaborative filtering </sub>
 
 ## Evaluation
 Metrik Evaluasi yang digunakan yaitu RMSE(Root Mean Squared Error) adalah metrik yang digunakan untuk mengukur kesalahan model dalam memprediksi data kuantitatif, atau bisa juga di sebut rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual
 
  ![Univariate](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/metrics.png)
+ 
+<sub>gambar 2. Evaluation metrics train dan tes dataset</sub>
 
 berdasarkan metrik tersebut yakni :
 - **RMSE pada Data Latih (Biru):** Pada data latihan, nilai Root Mean Squared Error (RMSE) menurun tajam pada awalnya dan kemudian terus menurun dengan laju yang lebih lambat, menunjukkan peningkatan performa selama proses pelatihan, yang ditandai dengan penurunan nilai RMSE pada data latihan.
@@ -249,17 +259,16 @@ berdasarkan metrik tersebut yakni :
 
 
 **Hasil :**
+
 pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil
 
 namun untuk metode Collaborative filtering 
 dalam project ini dinyatakan gagal karena pada metrik tersebut  **overfitting** yakni  garis data uji tidak menunjukkan penurunan yang konsisten. bisa jadi tanda bahwa model terlalu menyesuaikan diri dengan data latih dan tidak menggeneralisasi dengan baik pada data uji.
 
 tapi ada beberapa kemungkinan metode yang harus di perbaiki dari evaluasi ini 
-1. Pemilihan fitur/ Feature engineering yang digunakan untuk mempertimbangkan seberapa besar dataset pengaruh terhadap RMSE 
+1. Pemilihan fitur/ Feature engineering yang digunakan untuk mempertimbangkan seberapa besar dataset pengaruh terhadap RMSE, dalam project ini  pemilihan fitur terbaik memerlukan proses effort yang lebih rumit, dan belum terlaksana sampai se dalam itu
 
-2. menambahkan regularisasi, dropout atau juga early stopping untuk mengontrol overfitting
-
-3. Optimasi Hyperparameter seperti learning rate, jumlah epoch, atau batch size dapat membantu meningkatkan performa model.
+2. Optimasi Hyperparameter seperti learning rate, jumlah epoch, atau batch size dapat membantu meningkatkan performa model. tetapi dalam project ini saya belum menumukan nilai optimasi yang terbaik
 
 
 
