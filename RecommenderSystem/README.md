@@ -269,7 +269,7 @@ pada permasalahan content based filtering metode dapat menjawab permasalahan ten
 **Definition**: Proporsi item yang direkomendasikan dalam 10 besar yang memiliki setidaknya satu genre yang sama dengan genre pilihan penggun
 
 **Formula**: 
-\[ \text{Genre-Precision@10} = \frac{|\{\text{relevant items (genre overlap)}\} \cap \{\text{top-10 items}\}|}{10} \]
+![Precision Formula](https://latex.codecogs.com/png.latex?\text{Genre-Precision@10}=\frac{|\{\text{relevant items (genre overlap)}} \cap {\text{top-10 items}}|}{10})
 
 **Kalkulasi**:
 Kesepuluh item yang direkomendasikan memiliki setidaknya satu genre yang sama dengan genre pilihan pengguna.
