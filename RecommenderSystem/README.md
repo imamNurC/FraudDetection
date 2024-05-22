@@ -262,7 +262,7 @@ berdasarkan metrik tersebut yakni :
 
 pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil dengan penjelasan evaluasi metrik sebagai berikut :
 
-#### Genre-Precision@10
+## Genre-Precision@10
 
 **Definisi**: Proporsi item yang direkomendasikan dalam 10 besar yang memiliki setidaknya satu genre yang sama dengan genre pilihan penggun
 
@@ -277,7 +277,7 @@ Kesepuluh item yang direkomendasikan memiliki setidaknya satu genre yang sama de
 
 Genre-Precision@10 = 10/10 = 1.0
 
-#### Genre-Recall@10
+## Genre-Recall@10
 
 **Definisi**: Proporsi semua item relevan (berdasarkan genre) yang termasuk dalam 10 rekomendasi teratas.
 
@@ -287,12 +287,12 @@ Genre-Precision@10 = 10/10 = 1.0
 
 <sub>formula top 10 genre recall</sub>
 
-**Kalkulasi **:
+**Kalkulasi**:
 Dengan asumsi ada 15 item yang relevan (berdasarkan genre yang tumpang tindih) dalam kumpulan data:
 
 Genre-Precision@10 = 10/15 = 0.667
 
-#### F1 Score Calculation
+## F1 Score Calculation
 
 **Definisi**: Rata-rata harmonik Genre-Precision@N dan Genre-Recall@N.
 
