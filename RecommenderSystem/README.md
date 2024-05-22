@@ -269,6 +269,7 @@ pada permasalahan content based filtering metode dapat menjawab permasalahan ten
 **Formula**: 
 
 ![Precision Formula](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/gp10.png)
+
 <sub>formula top 10 genre Presisi</sub>
 
 **Kalkulasi**:
@@ -283,6 +284,7 @@ Genre-Precision@10 = 10/10 = 1.0
 **Formula**: 
 
 ![Precision Formula](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/gr10.png)
+
 <sub>formula top 10 genre recall</sub>
 
 **Kalkulasi **:
