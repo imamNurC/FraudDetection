@@ -260,49 +260,54 @@ berdasarkan metrik tersebut yakni :
 
 **Hasil :**
 
-pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil
+pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil dengan penjelasan evaluasi metrik sebagai berikut :
 
+#### Genre-Precision@10
 
-
-### Genre-Precision@10
-
-**Definition**: Proporsi item yang direkomendasikan dalam 10 besar yang memiliki setidaknya satu genre yang sama dengan genre pilihan penggun
+**Definisi**: Proporsi item yang direkomendasikan dalam 10 besar yang memiliki setidaknya satu genre yang sama dengan genre pilihan penggun
 
 **Formula**: 
-![Precision Formula](https://latex.codecogs.com/png.latex?\text{Genre-Precision@10}=\frac{|\{\text{relevant items (genre overlap)}} \cap {\text{top-10 items}}|}{10})
+
+![Precision Formula](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/gp10.png)
+<sub>formula top 10 genre Presisi</sub>
 
 **Kalkulasi**:
 Kesepuluh item yang direkomendasikan memiliki setidaknya satu genre yang sama dengan genre pilihan pengguna.
 
-\[ \text{Genre-Precision@10} = \frac{10}{10} = 1.0 \]
+Genre-Precision@10 = 10/10 = 1.0
 
-### Genre-Recall@10
+#### Genre-Recall@10
 
-**Definition**: Proporsi semua item relevan (berdasarkan genre) yang termasuk dalam 10 rekomendasi teratas.
+**Definisi**: Proporsi semua item relevan (berdasarkan genre) yang termasuk dalam 10 rekomendasi teratas.
 
 **Formula**: 
-\[ \text{Genre-Recall@10} = \frac{|\{\text{relevant items (genre overlap)}\} \cap \{\text{top-10 items}\}|}{|\{\text{all relevant items (genre overlap)}\}|} \]
+
+![Precision Formula](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/gr10.png)
+<sub>formula top 10 genre recall</sub>
 
 **Kalkulasi **:
 Dengan asumsi ada 15 item yang relevan (berdasarkan genre yang tumpang tindih) dalam kumpulan data:
 
-\[ \text{Genre-Recall@10} = \frac{10}{15} = 0.667 \]
+Genre-Precision@10 = 10/15 = 0.667
 
-### F1 Score Calculation
+#### F1 Score Calculation
+
+**Definisi**: Rata-rata harmonik Genre-Precision@N dan Genre-Recall@N.
+
 
 **Formula**:
-\[ \text{Genre-F1@10} = 2 \cdot \frac{\text{Genre-Precision@10} \cdot \text{Genre-Recall@10}}{\text{Genre-Precision@10} + \text{Genre-Recall@10}} \]
+
+![Precision Formula](https://raw.githubusercontent.com/imamNurC/Notebook-Research/main/RecommenderSystem/img/f1Score.png)
+
+<sub>formula f1 score berdasarkan ke 10 rekomendasi genre yang relavan </sub>
 
 **Kalkulasi**:
-\[ \text{Genre-F1@10} = 2 \cdot \frac{1.0 \cdot 0.667}{1.0 + 0.667} = 2 \cdot \frac{0.667}{1.667} \approx 0.8 \]
+f1@10 = 2 * ((gp@10 * gr@10) / (gp@10 + gr@10) ) 
+-  =  2 *  (0.667 / 1.667 ) ≈ 0.8
 
-### Result
-The F1 score is approximately 0.8.
 
-\[
-\text{Genre-F1@10} \approx 0.8
-\]
-
+##### Hasil
+Evaluasi metrics menggunakan f1 score tujuannya untuk memberikan pengukuran yang seimbang antara presisi (precision) dan recall untuk mengevaluasi kualitas rekomendasi. Dengan mempertimbangkan kedua aspek ini, F1 score memberikan gambaran yang lebih holistik tentang seberapa baik sistem rekomendasi dapat menyarankan item yang relevan dengan preferensi pengguna. dalam hal ini Hasil F1 score mendekati 0.8 yang artinya rata rata harmonis dari Genre-Precision@N dan Genre-Recall@N.
 
 
 
