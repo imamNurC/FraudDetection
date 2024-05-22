@@ -309,7 +309,7 @@ f1@10 = 2 * ((gp@10 * gr@10) / (gp@10 + gr@10) )
 
 
 ##### Hasil
-Evaluasi metrics menggunakan f1 score tujuannya untuk memberikan pengukuran yang seimbang antara presisi (precision) dan recall untuk mengevaluasi kualitas rekomendasi. Dengan mempertimbangkan kedua aspek ini, F1 score memberikan gambaran yang lebih holistik tentang seberapa baik sistem rekomendasi dapat menyarankan item yang relevan dengan preferensi pengguna. dalam hal ini Hasil F1 score mendekati 0.8 yang artinya rata rata harmonis dari Genre-Precision@N dan Genre-Recall@N.
+Evaluasi metrics menggunakan f1 score tujuannya untuk memberikan pengukuran yang seimbang antara presisi (precision) dan recall untuk mengevaluasi kualitas rekomendasi. Dengan mempertimbangkan kedua aspek ini, F1 score memberikan gambaran yang lebih holistik tentang seberapa baik sistem rekomendasi dapat menyarankan item yang relevan dengan preferensi pengguna. yang dimana dalam hal ini Hasil F1 score mendekati 0.8
 
 
 
