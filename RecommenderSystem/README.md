@@ -262,6 +262,50 @@ berdasarkan metrik tersebut yakni :
 
 pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil
 
+### Genre-Precision@10
+
+**Definition**: Proporsi item yang direkomendasikan dalam 10 besar yang memiliki setidaknya satu genre yang sama dengan genre pilihan penggun
+
+**Formula**: 
+\[ \text{Genre-Precision@10} = \frac{|\{\text{relevant items (genre overlap)}\} \cap \{\text{top-10 items}\}|}{10} \]
+
+**Kalkulasi**:
+Kesepuluh item yang direkomendasikan memiliki setidaknya satu genre yang sama dengan genre pilihan pengguna.
+
+\[ \text{Genre-Precision@10} = \frac{10}{10} = 1.0 \]
+
+### Genre-Recall@10
+
+**Definition**: Proporsi semua item relevan (berdasarkan genre) yang termasuk dalam 10 rekomendasi teratas.
+
+**Formula**: 
+\[ \text{Genre-Recall@10} = \frac{|\{\text{relevant items (genre overlap)}\} \cap \{\text{top-10 items}\}|}{|\{\text{all relevant items (genre overlap)}\}|} \]
+
+**Kalkulasi **:
+Dengan asumsi ada 15 item yang relevan (berdasarkan genre yang tumpang tindih) dalam kumpulan data:
+
+\[ \text{Genre-Recall@10} = \frac{10}{15} = 0.667 \]
+
+### F1 Score Calculation
+
+**Formula**:
+\[ \text{Genre-F1@10} = 2 \cdot \frac{\text{Genre-Precision@10} \cdot \text{Genre-Recall@10}}{\text{Genre-Precision@10} + \text{Genre-Recall@10}} \]
+
+**Kalkulasi**:
+\[ \text{Genre-F1@10} = 2 \cdot \frac{1.0 \cdot 0.667}{1.0 + 0.667} = 2 \cdot \frac{0.667}{1.667} \approx 0.8 \]
+
+### Result
+The F1 score is approximately 0.8.
+
+\[
+\text{Genre-F1@10} \approx 0.8
+\]
+
+
+
+
+
+
 namun untuk metode Collaborative filtering 
 dalam project ini dinyatakan gagal karena pada metrik tersebut  **overfitting** yakni  garis data uji tidak menunjukkan penurunan yang konsisten. bisa jadi tanda bahwa model terlalu menyesuaikan diri dengan data latih dan tidak menggeneralisasi dengan baik pada data uji.
 
