@@ -262,6 +262,8 @@ berdasarkan metrik tersebut yakni :
 
 pada permasalahan content based filtering metode dapat menjawab permasalahan tentang kecenderungan pengguna terhadap anime berdasarkan genre. dan dinyatakan berhasil
 
+
+
 ### Genre-Precision@10
 
 **Definition**: Proporsi item yang direkomendasikan dalam 10 besar yang memiliki setidaknya satu genre yang sama dengan genre pilihan penggun
